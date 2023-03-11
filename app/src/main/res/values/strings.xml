@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">View_holder</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="head1" >KAIST university is my second destination</string>
+    <string name="head10" > how are you</string>
+    <string name="head9">hello world I\'m here to make you upside down</string>
+    <string name="head8" >Monkey D Luffy wil become the man with the most freedom in the world</string>
+    <string name="head7" >Nami will create a map of the whole grand-line</string>
+    <string name="head6">Usop will become the best sniper in the world</string>
+    <string name="head5" >Franky will create the best ship for his nakama</string>
+    <string name="head4">some text</string>
+    <string name="head3" > The process of associating views to their data is called binding.</string>
+    <string name="head2" >as needed and also sets the data for those views</string>
+</resources>
