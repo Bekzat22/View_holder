@@ -5,23 +5,30 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class Fragment2 extends Fragment {
+public class Fragment2 extends Fragment implements OnClicks {
 
 
     private int[] image;
     private String[] newsheading;
     private ArrayList<News> newsArrayList;
+    Adapter adapter;
     private RecyclerView recycle;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,14 +48,21 @@ public class Fragment2 extends Fragment {
         recycle=view.findViewById(R.id.recycler);
         recycle.setLayoutManager( new LinearLayoutManager(getContext()));
         recycle.setHasFixedSize(true);
+        OnClicks OnClicks;
         initialize();
-        Adapter adapter=new Adapter(newsArrayList,getContext());
+
+
+        adapter=new Adapter(newsArrayList,getContext());
+        adapter.setOnClicks(this);
+
         recycle.setAdapter(adapter);
+
+
     }
 
     private void initialize() {
-        newsArrayList =new ArrayList<>();
-        newsheading= new String []{
+        newsArrayList = new ArrayList<>();
+        newsheading = new String[]{
                 getString(R.string.head1),
                 getString(R.string.head2),
                 getString(R.string.head3),
@@ -74,8 +88,31 @@ public class Fragment2 extends Fragment {
 
         };
         for (int i = 0; i < newsheading.length; i++) {
-            News news = new News(newsheading[i],image[i]);
+            News news = new News(newsheading[i], image[i]);
             newsArrayList.add(news);
         }
+    }
+
+
+
+    @Override
+    public void onItemLongCklicklistener(int position) {
+        newsArrayList.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void OnItemClick(News news) {
+        Fragment3 detailFragment = new Fragment3();
+        Bundle bundle = new Bundle();
+        bundle.putString("title", news.getTitle());
+        bundle.putInt("image", news.getImage());
+        detailFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framentcontainer, detailFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
     }
 }

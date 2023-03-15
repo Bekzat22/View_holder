@@ -2,15 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/fragment2"
     android:layout_height="match_parent"
     tools:context=".Fragment2">
 
-    <!-- TODO: Update blank fragment layout -->
-   <androidx.recyclerview.widget.RecyclerView
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recycler"
+          android:layout_width="match_parent"
+          tools:listitem="@layout/item"
+          android:layout_height="wrap_content"/>
 
-       android:id="@+id/recycler"
-       android:layout_width="match_parent"
-       tools:listitem="@layout/item"
-       android:layout_height="wrap_content"/>
+
+
 
 </FrameLayout>
